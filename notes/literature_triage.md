@@ -12,6 +12,11 @@
 - 只做 co-visibility / overlap prediction。
 - 只做长序列 memory、token merging、加速。
 - 只做 diversity-aware view partitioning。
+- 只做 active view selection / next-best-view。
+- 只做 token/frame selection 提速。
+- 只判断多视角输入是否属于同一个静态场景。
+- 只做通用 3D GFM benchmark。
+- 只把 feed-forward 预测接到 SfM/BA 做全局优化。
 
 ## 关键相关工作
 
@@ -23,6 +28,14 @@
 - Co-VGGT：探测 VGGT 内部 co-visibility 表征。
 - Diversity-aware View Partitioning：处理冗余视角和 scalable VGGT。
 - FrameVGGT / RetrieveVGGT：长视频/流式场景的 memory 和 frame selection。
+- Good Token Hunting：inter-frame + intra-frame token selection，主打提速。
+- AREA3D：把 VGGT confidence 和 VLM guidance 用到 active view selection。
+- 传统 NBV / view planning：已经长期研究采集视角和重建质量。
+- Can These Views Be One Scene：指出 VGGT/DUSt3R/MASt3R 会对无关图、重复图、噪声产生 3D 幻觉；用 COLMAP 式信号做一致性评估。
+- E3D-Bench：综合评估 3D geometric foundation models。
+- Glob3R：用 3D foundation model 初始化，再结合 tracks、motion averaging、BA 做全局 SfM。
+- RealX3D：真实退化 3D benchmark，覆盖 blur、low light、exposure、smoke、dynamic occlusion、reflection。
+- 3DReflecNet：反光、透明、低纹理物体的大规模数据集。
 
 ## 暂时更有空间
 
@@ -31,6 +44,8 @@
 - 区分坏帧类型：模糊、动态、低纹理、反光、低重叠、冗余帧。
 - 给出重新拍摄建议：缺哪个方向、哪些帧应删、哪些区域不可信。
 - 结合 VGGT 输出、跨视角一致性、图像质量和帧级几何稳定性。
+- 不直接做机器人 NBV，而是做离线照片集的质量诊断和采集反馈。
+- 不只回答“是不是一个场景”，还要回答“为什么差、删哪张、补拍什么”。
 
 ## 当前判断
 
@@ -41,3 +56,33 @@
 > 真实不受控图像集合中的 feed-forward 3D reconstruction 可靠性诊断。
 
 也就是从“点是否可信”提升到“这组输入为什么失败、该删哪张、该补拍什么”。
+
+## 下一轮重点读
+
+- 传统 SfM/MVS 的 image selection 和 quality prediction。
+- 手机/无人机/文物扫描中的 capture guidance。
+- blur、dynamic object、reflection、low texture 对重建失败的影响。
+- feed-forward 3D 方法有没有公开的真实采集失败 benchmark。
+- 能否把传统几何验证和 VGGT 输出结合成可解释诊断，而不是单一分数。
+
+## 可能可用数据
+
+- 自采手机图片：最快，用来建立失败直觉。
+- RealX3D：真实退化条件，适合验证 blur / low light / reflection。
+- 3DReflecNet：适合验证 reflective / transparent / low-texture。
+
+## 参考链接
+
+- VGGT: https://arxiv.org/abs/2503.11651
+- Uncertainty Quality of VGGT: https://arxiv.org/html/2606.16479v1
+- Trust3R: https://arxiv.org/abs/2605.19539
+- RobustVGGT: https://arxiv.org/html/2512.04012v1
+- Co-VGGT: https://arxiv.org/abs/2607.09503
+- Good Token Hunting: https://arxiv.org/abs/2605.23892
+- Can These Views Be One Scene: https://arxiv.org/abs/2605.18754
+- SysCON3D code: https://github.com/mvp18/3DConsistency-metrics
+- AREA3D: https://arxiv.org/html/2512.05131v1
+- E3D-Bench: https://arxiv.org/abs/2506.01933
+- Glob3R: https://arxiv.org/html/2607.09225v1
+- RealX3D: https://arxiv.org/html/2512.23437v2
+- 3DReflecNet: https://arxiv.org/html/2605.10204v1
