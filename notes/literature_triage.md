@@ -18,6 +18,9 @@
 - 只做通用 3D GFM benchmark。
 - 只把 feed-forward 预测接到 SfM/BA 做全局优化。
 - 只做传统 SfM/UAV 的在线采集反馈。
+- 只做 LoRA/self-calibration 让模型适配单个场景。
+- 只做大规模视频弱监督适配。
+- 只做 next-best-image / next-best-view 策略。
 
 ## 关键相关工作
 
@@ -35,9 +38,12 @@
 - Can These Views Be One Scene：指出 VGGT/DUSt3R/MASt3R 会对无关图、重复图、噪声产生 3D 幻觉；用 COLMAP 式信号做一致性评估。
 - E3D-Bench：综合评估 3D geometric foundation models。
 - Glob3R：用 3D foundation model 初始化，再结合 tracks、motion averaging、BA 做全局 SfM。
+- LoRA3D：用模型自身预测、confidence 重加权和 LoRA 做场景级自校准。
+- SAGE：用互联网视频弱监督适配 3D geometric foundation model。
 - RealX3D：真实退化 3D benchmark，覆盖 blur、low light、exposure、smoke、dynamic occlusion、reflection。
 - 3DReflecNet：反光、透明、低纹理物体的大规模数据集。
 - On-the-fly Feedback SfM：传统/UAV 场景的在线重建质量评估和路径反馈。
+- VIN-NBV：用网络做 next-best-view selection，提高 3D reconstruction 资源效率。
 
 ## 暂时更有空间
 
@@ -49,6 +55,7 @@
 - 不直接做机器人 NBV，而是做离线照片集的质量诊断和采集反馈。
 - 不只回答“是不是一个场景”，还要回答“为什么差、删哪张、补拍什么”。
 - 和传统在线 SfM 区分：我们关注离线手机照片集 + feed-forward 3D model。
+- 和 LoRA/self-calibration 区分：我们先做诊断和采集反馈，不直接更新主模型。
 
 ## 当前判断
 
@@ -76,10 +83,24 @@
 - reprojection error。
 - 相机轨迹稳定性。
 - 初始图像对和 next-best-image 的不确定性准则。
+- 图像平面特征分布。
+- planar / rotational / general motion 判断。
+
+## 采集质量因素
+
+- overlap 是否足够。
+- baseline 是否太小或太大。
+- 是否有低纹理大平面。
+- 是否有反光、透明、金属、水面。
+- 是否有运动物体或动态遮挡。
+- 曝光、光照、白平衡是否变化大。
+- 是否模糊、失焦、高 ISO 噪声。
 
 ## 可能可用数据
 
 - 自采手机图片：最快，用来建立失败直觉。
+- NAVI：casual image captures，有高质量 3D scan 和 2D-3D 对齐。
+- OCRTOC / A Real World Dataset：真实桌面物体、多视角 RGB-D。
 - RealX3D：真实退化条件，适合验证 blur / low light / reflection。
 - 3DReflecNet：适合验证 reflective / transparent / low-texture。
 
@@ -96,8 +117,14 @@
 - AREA3D: https://arxiv.org/html/2512.05131v1
 - E3D-Bench: https://arxiv.org/abs/2506.01933
 - Glob3R: https://arxiv.org/html/2607.09225v1
+- LoRA3D: https://arxiv.org/abs/2412.07746
+- SAGE: https://arxiv.org/abs/2602.07891
+- NAVI: https://navidataset.github.io/
+- A Real World Dataset for Multi-view 3D Reconstruction: https://arxiv.org/abs/2203.11397
 - RealX3D: https://arxiv.org/html/2512.23437v2
 - 3DReflecNet: https://arxiv.org/html/2605.10204v1
+- Video-Based 3D Reconstruction Review: https://www.mdpi.com/2313-433X/12/3/128
 - Structure-from-Motion Revisited: https://openaccess.thecvf.com/content_cvpr_2016/html/Schonberger_Structure-From-Motion_Revisited_CVPR_2016_paper.html
 - View-graph Selection Framework for SfM: https://www.ecva.net/papers/eccv_2018/papers_ECCV/html/Rajvi_Shah_View-graph_Selection_Framework_ECCV_2018_paper.php
 - On-the-fly Feedback SfM: https://arxiv.org/abs/2512.02375
+- VIN-NBV: https://arxiv.org/html/2505.06219v1
