@@ -1,0 +1,38 @@
+# Third-party source checkout, managed separately from this repository.
+/official-vggt/
+
+# Python environments and caches.
+/.venv/
+/venv/
+/env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Local datasets and downloaded model assets.
+/data/
+/datasets/
+/checkpoints/
+/weights/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+
+# Generated experiment artifacts. Keep scripts, configs, notes, and tables tracked.
+/outputs/
+/runs/
+/wandb/
+/logs/
+/experiments/**/outputs/
+/experiments/**/cache/
+/experiments/**/artifacts/
+
+# Local editor and operating-system files.
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
