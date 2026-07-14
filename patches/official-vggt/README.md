@@ -1,14 +1,12 @@
-# Official VGGT Patches
+# 官方 VGGT 补丁
 
-Store small patches here if we need to modify the local `official-vggt/`
-checkout for reproduction or experiments.
+如果为了复现或实验必须修改本地 `official-vggt/`，就在这里保存小补丁。
 
-Suggested workflow:
+建议流程：
 
 ```bash
 cd official-vggt
 git diff > ../patches/official-vggt/YYYYMMDD-short-description.patch
 ```
 
-This lets us keep the full upstream source out of our repository while still
-tracking any local changes that matter for reproducibility.
+这样可以避免把整份上游源码放进自己的仓库，同时保留对复现有影响的本地改动。

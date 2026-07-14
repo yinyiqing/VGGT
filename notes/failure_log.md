@@ -1,26 +1,25 @@
-# VGGT Failure Log
+# VGGT 失败案例日志
 
-Use one section per image group. Keep entries short, visual, and reproducible.
+每组图片单独记录一节。记录要短、直观、可复现。
 
-## Template
+## 模板
 
-- Date:
-- Scene:
-- Image folder:
-- Number of images:
-- Resolution:
-- Command:
-- Runtime:
-- Peak VRAM:
-- Output artifacts:
-- What worked:
-- What failed:
-- Confidence/error observation:
-- Hypothesis:
-- Next action:
+- 日期：
+- 场景：
+- 图片目录：
+- 图片数量：
+- 分辨率：
+- 运行命令：
+- 推理时间：
+- 峰值显存：
+- 输出文件：
+- 成功现象：
+- 失败现象：
+- confidence/error 观察：
+- 初步假设：
+- 下一步：
 
-## Environment Notes
+## 环境备注
 
-- GPU reported by `nvidia-smi`: NVIDIA GeForce RTX 4090, 49140 MiB.
-- Roadmap originally assumed 24 GB VRAM; record this difference when reporting
-  experiment hardware.
+- `nvidia-smi` 报告的 GPU：NVIDIA GeForce RTX 4090，49140 MiB。
+- roadmap 最初按 24 GB 显存估计；正式报告实验硬件时需要记录这个差异。

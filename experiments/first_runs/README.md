@@ -1,14 +1,13 @@
-# First Runs
+# 第一批复现实验
 
-This folder tracks lightweight records for the first VGGT reproductions.
+这个目录用于保存第一批 VGGT 复现实验的轻量记录。
 
-Recommended files to track here:
+建议追踪的内容：
 
-- small run manifests;
-- command snippets;
-- compact metric tables;
-- links or relative paths to local artifacts;
-- short observations.
+- 小型运行 manifest；
+- 命令片段；
+- 简洁指标表；
+- 指向本地结果文件的相对路径；
+- 简短观察记录。
 
-Do not commit raw images, downloaded weights, dense point clouds, or large
-visualization outputs.
+不要提交原始图片、下载权重、稠密点云或大体积可视化输出。

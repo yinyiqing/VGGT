@@ -1,13 +1,12 @@
-# Remote Viewing Notes
+# 远程查看结果
 
-This project is expected to run on a remote GPU machine. We should make every
-experiment inspectable without requiring a desktop session on that machine.
+这个项目主要在远程 GPU 机器上运行。我们的目标是：每次实验即使没有远程桌面，也能检查结果、保存证据、继续推进。
 
-## Interactive Viewing
+## 交互式查看
 
-Use SSH port forwarding from your local machine.
+在本地机器上使用 SSH 端口转发。
 
-For the Gradio demo:
+查看 Gradio demo：
 
 ```bash
 ssh -L 7860:127.0.0.1:7860 jiutian@REMOTE_HOST
@@ -15,13 +14,13 @@ cd /home/jiutian/vggt/official-vggt
 conda run --no-capture-output -n vggt python demo_gradio.py
 ```
 
-Then open this URL locally:
+然后在本地浏览器打开：
 
 ```text
 http://127.0.0.1:7860
 ```
 
-For the Viser demo:
+查看 Viser demo：
 
 ```bash
 ssh -L 8080:127.0.0.1:8080 jiutian@REMOTE_HOST
@@ -29,31 +28,27 @@ cd /home/jiutian/vggt/official-vggt
 conda run --no-capture-output -n vggt python demo_viser.py --image_folder /path/to/images --port 8080
 ```
 
-Then open this URL locally:
+然后在本地浏览器打开：
 
 ```text
 http://127.0.0.1:8080
 ```
 
-If using VS Code Remote SSH, use the Ports panel to forward ports 7860 and 8080.
+如果使用 VS Code Remote SSH，可以在 Ports 面板里转发 `7860` 和 `8080`。
 
-## Non-Interactive Artifacts
+## 非交互式结果
 
-Every reproducible run should save enough files to inspect results later:
+每次可复现实验都应该保存足够的文件，方便之后检查：
 
-- input image list or manifest;
-- run command and environment summary;
-- model predictions, usually `.npz`;
-- point cloud or mesh export, such as `.ply` or `.glb`;
-- 2D preview images for depth, confidence, and failure cases;
-- compact metrics or observations in Markdown/CSV.
+- 输入图片列表或 manifest；
+- 运行命令和环境摘要；
+- 模型预测结果，通常是 `.npz`；
+- 点云或网格导出，例如 `.ply` 或 `.glb`；
+- depth、confidence 和失败案例的 2D 预览图；
+- Markdown/CSV 格式的轻量指标和观察记录。
 
-This lets us keep experiments moving even when browser forwarding is slow or
-unavailable.
+这样即使浏览器转发很慢或者暂时不可用，实验也不会卡住。
 
-## Suggested Rule
+## 建议规则
 
-Interactive viewers are for intuition. Tracked notes and compact result tables
-are for research memory. When a result looks interesting in the viewer, write it
-down in `notes/failure_log.md` and save a small artifact reference under
-`experiments/`.
+交互式 viewer 用来建立直觉；被追踪的笔记和轻量结果表才是研究记忆。只要在 viewer 里看到有意思的现象，就把它写进 `notes/failure_log.md`，并在 `experiments/` 下保存对应的小型结果记录或路径引用。
