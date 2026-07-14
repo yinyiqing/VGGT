@@ -20,15 +20,19 @@ __pycache__/
 *.ckpt
 *.safetensors
 *.onnx
+*.npz
 
 # Generated experiment artifacts. Keep scripts, configs, notes, and tables tracked.
 /outputs/
 /runs/
 /wandb/
 /logs/
+/artifacts/
 /experiments/**/outputs/
 /experiments/**/cache/
 /experiments/**/artifacts/
+*.glb
+*.ply
 
 # Local editor and operating-system files.
 .DS_Store
