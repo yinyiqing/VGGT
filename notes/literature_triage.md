@@ -17,6 +17,7 @@
 - 只判断多视角输入是否属于同一个静态场景。
 - 只做通用 3D GFM benchmark。
 - 只把 feed-forward 预测接到 SfM/BA 做全局优化。
+- 只做传统 SfM/UAV 的在线采集反馈。
 
 ## 关键相关工作
 
@@ -36,6 +37,7 @@
 - Glob3R：用 3D foundation model 初始化，再结合 tracks、motion averaging、BA 做全局 SfM。
 - RealX3D：真实退化 3D benchmark，覆盖 blur、low light、exposure、smoke、dynamic occlusion、reflection。
 - 3DReflecNet：反光、透明、低纹理物体的大规模数据集。
+- On-the-fly Feedback SfM：传统/UAV 场景的在线重建质量评估和路径反馈。
 
 ## 暂时更有空间
 
@@ -46,6 +48,7 @@
 - 结合 VGGT 输出、跨视角一致性、图像质量和帧级几何稳定性。
 - 不直接做机器人 NBV，而是做离线照片集的质量诊断和采集反馈。
 - 不只回答“是不是一个场景”，还要回答“为什么差、删哪张、补拍什么”。
+- 和传统在线 SfM 区分：我们关注离线手机照片集 + feed-forward 3D model。
 
 ## 当前判断
 
@@ -64,6 +67,15 @@
 - blur、dynamic object、reflection、low texture 对重建失败的影响。
 - feed-forward 3D 方法有没有公开的真实采集失败 benchmark。
 - 能否把传统几何验证和 VGGT 输出结合成可解释诊断，而不是单一分数。
+
+## 可借用的传统信号
+
+- view graph 连通性。
+- pairwise inlier 数和匹配覆盖。
+- triangulation angle / baseline。
+- reprojection error。
+- 相机轨迹稳定性。
+- 初始图像对和 next-best-image 的不确定性准则。
 
 ## 可能可用数据
 
@@ -86,3 +98,6 @@
 - Glob3R: https://arxiv.org/html/2607.09225v1
 - RealX3D: https://arxiv.org/html/2512.23437v2
 - 3DReflecNet: https://arxiv.org/html/2605.10204v1
+- Structure-from-Motion Revisited: https://openaccess.thecvf.com/content_cvpr_2016/html/Schonberger_Structure-From-Motion_Revisited_CVPR_2016_paper.html
+- View-graph Selection Framework for SfM: https://www.ecva.net/papers/eccv_2018/papers_ECCV/html/Rajvi_Shah_View-graph_Selection_Framework_ECCV_2018_paper.php
+- On-the-fly Feedback SfM: https://arxiv.org/abs/2512.02375
