@@ -48,6 +48,8 @@ __pycache__/
 /experiments/**/outputs/
 /experiments/**/cache/
 /experiments/**/artifacts/
+!/experiments/**/manual_views/
+!/experiments/**/manual_views/**
 *.glb
 *.ply
 
