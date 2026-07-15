@@ -22,15 +22,18 @@
 
 ## 当前工作流
 
-1. 用 `scripts/run_vggt_folder.py` 跑一组图片，保存 `predictions.npz` 和 `summary.json`。
-2. 用 `scripts/make_vggt_report.py` 生成标准检查报告。
+1. 把图片放到一个 `images/` 目录。
+2. 用 `scripts/run_vggt_experiment.py` 一键跑 VGGT 和标准检查报告。
 3. 先看 `report.md`，再按报告里的路径打开 PNG / PLY。
 4. 把失败现象写进 `notes/failure_log.md`。
 
 示例：
 
 ```bash
-conda run --no-capture-output -n vggt python scripts/make_vggt_report.py \
-  --predictions experiments/first_runs/official_kitchen/predictions.npz \
-  --title official_kitchen
+conda run --no-capture-output -n vggt python scripts/run_vggt_experiment.py \
+  --image-folder data/desk_small_objects/images \
+  --output-dir experiments/custom/desk_small_objects \
+  --title desk_small_objects
 ```
+
+自采数据怎么拍，见 `notes/data_collection.md`。
