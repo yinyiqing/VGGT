@@ -18,6 +18,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--image-folder", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--official-root", type=Path, default=Path("official-vggt"))
+    parser.add_argument("--weights-path", type=Path, default=None, help="Optional local VGGT model.pt path.")
     parser.add_argument("--weights-url", default="https://huggingface.co/facebook/VGGT-1B/resolve/main/model.pt")
     return parser.parse_args()
 
@@ -62,7 +63,13 @@ def main() -> None:
 
     print("Loading VGGT weights...")
     model = VGGT()
-    state_dict = torch.hub.load_state_dict_from_url(args.weights_url)
+    if args.weights_path is not None:
+        weights_path = args.weights_path.resolve()
+        if not weights_path.exists():
+            raise FileNotFoundError(f"VGGT weights not found: {weights_path}")
+        state_dict = torch.load(weights_path, map_location="cpu")
+    else:
+        state_dict = torch.hub.load_state_dict_from_url(args.weights_url)
     model.load_state_dict(state_dict)
     model.eval().to(device)
 
