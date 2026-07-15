@@ -21,6 +21,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--conf-percent", type=float, default=50.0)
     parser.add_argument("--frame-index", type=int, default=None)
     parser.add_argument("--max-points", type=int, default=120000)
+    parser.add_argument("--point-size", type=float, default=0.25)
+    parser.add_argument("--background", choices=["white", "dark"], default="white")
     parser.add_argument("--seed", type=int, default=0)
     return parser.parse_args()
 
@@ -47,6 +49,8 @@ def main() -> None:
     mask = np.isfinite(points).all(axis=1) & (conf >= threshold) & (conf > 1e-5)
     points = points[mask]
     colors = colors[mask] / 255.0
+    if len(points) == 0:
+        raise ValueError("No valid points after confidence filtering")
 
     if len(points) > args.max_points:
         rng = np.random.default_rng(args.seed)
@@ -57,14 +61,20 @@ def main() -> None:
     points = points - np.median(points, axis=0)
 
     fig = plt.figure(figsize=(12, 6), dpi=160)
+    bg_color = "#ffffff" if args.background == "white" else "#111111"
+    title_color = "#111111" if args.background == "white" else "#eeeeee"
+    fig.patch.set_facecolor(bg_color)
     views = [(20, -60, "view_a"), (30, 35, "view_b")]
     for i, (elev, azim, title) in enumerate(views, start=1):
         ax = fig.add_subplot(1, 2, i, projection="3d")
-        ax.scatter(points[:, 0], points[:, 1], points[:, 2], c=colors, s=0.15, linewidths=0)
+        ax.set_facecolor(bg_color)
+        ax.scatter(points[:, 0], points[:, 1], points[:, 2], c=colors, s=args.point_size, linewidths=0)
         ax.view_init(elev=elev, azim=azim)
-        ax.set_title(title)
+        ax.set_title(title, color=title_color)
         ax.set_axis_off()
-        ax.set_box_aspect(np.ptp(points, axis=0))
+        extent = np.ptp(points, axis=0)
+        extent[extent <= 1e-6] = 1.0
+        ax.set_box_aspect(extent)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     fig.tight_layout()

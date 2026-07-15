@@ -20,6 +20,7 @@ conda run --no-capture-output -n vggt python scripts/run_vggt_folder.py \
 - 推理时间：16.135 秒
 - 峰值显存：8.79 GB
 - 输出：`summary.json`、`predictions.npz`
+- 报告：`report.md`
 - 预览：`artifacts/previews/`
 - 3D：`artifacts/3d/scene_conf50_500k.glb`、`artifacts/3d/scene_conf50_500k.ply`
 

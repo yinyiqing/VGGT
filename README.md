@@ -19,3 +19,18 @@
 - 大体积生成结果、缓存、点云、日志和可视化导出。
 
 这样做的目标是让仓库保持干净、可读、可公开，同时保留足够信息，让别人可以用自己的官方 VGGT checkout 复现我们的实验。
+
+## 当前工作流
+
+1. 用 `scripts/run_vggt_folder.py` 跑一组图片，保存 `predictions.npz` 和 `summary.json`。
+2. 用 `scripts/make_vggt_report.py` 生成标准检查报告。
+3. 先看 `report.md`，再按报告里的路径打开 PNG / PLY。
+4. 把失败现象写进 `notes/failure_log.md`。
+
+示例：
+
+```bash
+conda run --no-capture-output -n vggt python scripts/make_vggt_report.py \
+  --predictions experiments/first_runs/official_kitchen/predictions.npz \
+  --title official_kitchen
+```
