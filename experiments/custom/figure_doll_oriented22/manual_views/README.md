@@ -9,6 +9,11 @@ meshlab_scene_conf50_overview.png
 meshlab_scene_conf10_noisy.png
 ```
 
+当前截图：
+
+- `meshlab_scene_conf50_overview.png`：当前推荐展示结果。
+- `meshlab_scene_conf10_noisy.png`：低阈值噪声对照。
+
 截图要求：
 
 - PNG/JPG 格式。

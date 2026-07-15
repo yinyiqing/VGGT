@@ -32,6 +32,11 @@
 - `experiments/custom/figure_doll_oriented22/artifacts/02_pointcloud_files/frame00_conf10_500k.glb`
 - `experiments/custom/figure_doll_oriented22/artifacts/02_pointcloud_files/frame00_conf10_500k.ply`
 
+## 手动截图
+
+- `manual_views/meshlab_scene_conf50_overview.png`：主体较完整，适合作为当前展示结果。
+- `manual_views/meshlab_scene_conf10_noisy.png`：低阈值带入更多背景和错误点，整体更乱。
+
 ## 人工观察
 
 - 成功现象：图片方向统一后，confidence 明显恢复；娃娃主体能聚成一团，头发和金色装饰大致可见。
