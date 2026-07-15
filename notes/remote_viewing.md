@@ -70,7 +70,8 @@ Mac 上查看 `.glb`：
 - 或用 Blender / MeshLab 打开。
 - VS Code Remote SSH 里可以右键下载到本地再看。
 
-如果浏览器预览很淡或很碎，优先下载 `.ply` 用 MeshLab 看。
+如果浏览器预览很淡或很碎，优先下载 `.ply` 用 MeshLab 或 CloudCompare 看。
+不要依赖 macOS/VS Code 默认预览；它可能把点云错误显示成灰色三角片。
 
 ## 建议规则
 
