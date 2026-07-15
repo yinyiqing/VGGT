@@ -50,3 +50,15 @@
 - confidence/error 观察：`conf10 + 2m points` 会保留更多小物体点，但全场景明显变乱；单帧 `frame00_conf10_500k.ply` 更适合检查局部细节。
 - 初步假设：细小、局部、遮挡多的物体更容易落在低 confidence 区间；confidence 过滤会在“干净整体”和“保留细节”之间产生取舍。
 - 下一步：在自采数据里专门记录“小物体是否被保留”和对应 confidence 分布。
+
+## 2026-07-15 figure_doll 图像方向问题
+
+- 场景：自采手办娃娃。
+- 图片目录：`data/figure_doll/images`
+- 图片数量：24
+- 输出文件：`experiments/custom/figure_doll/`
+- 成功现象：流程正常跑通。
+- 失败现象：前 22 张依赖 EXIF 旋转，模型读取后方向横倒；最后 2 张低分辨率正向图混入。点云发散，confidence 大量卡在 1.0。
+- confidence/error 观察：raw 版 `world_points_conf` p50=1.0，p95=2.07；转正并排除低分辨率图后 p50=4.7609，p95=16.054。
+- 初步假设：VGGT 对 EXIF 方向和混合画幅比较敏感；输入方向错误会直接触发低置信和点云发散。
+- 下一步：以后自采图先做 EXIF 转正；当前推荐查看 `experiments/custom/figure_doll_oriented22/`。
