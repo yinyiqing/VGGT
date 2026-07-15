@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-07-15T05:02:03.360814+00:00",
+  "timestamp_utc": "2026-07-15T06:30:31.910015+00:00",
   "image_folder": "/home/jiutian/vggt/official-vggt/examples/room/images",
   "image_count": 8,
   "images": [
@@ -22,7 +22,7 @@
     9
   ],
   "dtype": "torch.bfloat16",
-  "elapsed_seconds": 10.564,
+  "elapsed_seconds": 10.408,
   "peak_vram_gb": 8.43,
   "prediction_keys": [
     "depth",

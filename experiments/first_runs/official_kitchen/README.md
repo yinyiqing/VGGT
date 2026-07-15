@@ -17,10 +17,14 @@ conda run --no-capture-output -n vggt python scripts/run_vggt_folder.py \
 
 结果：
 
-- 推理时间：19.752 秒
+- 推理时间：16.135 秒
 - 峰值显存：8.79 GB
 - 输出：`summary.json`、`predictions.npz`
 - 预览：`artifacts/previews/`
 - 3D：`artifacts/3d/scene_conf50_500k.glb`、`artifacts/3d/scene_conf50_500k.ply`
 
-备注：`predictions.npz` 和 `artifacts/` 是重产物，已清理；需要时按上面的命令重跑生成。
+当前保留的查看文件：
+
+- `artifacts/3d/scene_conf50_500k.ply`：干净整体。
+- `artifacts/3d/scene_conf10_2m.ply`：更多细节，也更乱。
+- `artifacts/3d/frame00_conf10_500k.ply`：单帧检查小车。
