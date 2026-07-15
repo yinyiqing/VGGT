@@ -16,6 +16,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--conf-percent", type=float, default=50.0)
     parser.add_argument("--mode", choices=["pointmap", "depth"], default="pointmap")
+    parser.add_argument("--frame-index", type=int, default=None)
     parser.add_argument("--max-points", type=int, default=500000)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--also-ply", action="store_true")
@@ -33,6 +34,12 @@ def main() -> None:
         conf = predictions["depth_conf"]
 
     images = predictions["images"].transpose(0, 2, 3, 1)
+    if args.frame_index is not None:
+        if args.frame_index < 0 or args.frame_index >= points.shape[0]:
+            raise ValueError(f"--frame-index must be in [0, {points.shape[0] - 1}]")
+        points = points[args.frame_index : args.frame_index + 1]
+        conf = conf[args.frame_index : args.frame_index + 1]
+        images = images[args.frame_index : args.frame_index + 1]
     colors = (np.clip(images, 0, 1) * 255).astype(np.uint8)
 
     points_flat = points.reshape(-1, 3)

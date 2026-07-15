@@ -38,3 +38,15 @@
 - confidence/error 观察：待做几何一致性检查。
 - 初步假设：VGGT 会对低重叠输入生成看似完整的局部几何，但整组相机/点云可能不可靠。
 - 下一步：增加相机轨迹和点云预览，检查是否存在场景拼接错误。
+
+## 2026-07-15 official_kitchen 小物体丢失
+
+- 场景：官方厨房样例。
+- 图片目录：`official-vggt/examples/kitchen/images`
+- 图片数量：25
+- 输出文件：`experiments/first_runs/official_kitchen/`
+- 成功现象：`scene_conf50_500k.ply` 能看出主要桌面、餐垫和厨房结构。
+- 失败现象：高 confidence 过滤后，小车这类小物体明显变少或消失。
+- confidence/error 观察：`conf10 + 2m points` 会保留更多小物体点，但全场景明显变乱；单帧 `frame00_conf10_500k.ply` 更适合检查局部细节。
+- 初步假设：细小、局部、遮挡多的物体更容易落在低 confidence 区间；confidence 过滤会在“干净整体”和“保留细节”之间产生取舍。
+- 下一步：在自采数据里专门记录“小物体是否被保留”和对应 confidence 分布。

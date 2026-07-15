@@ -19,6 +19,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--predictions", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--conf-percent", type=float, default=50.0)
+    parser.add_argument("--frame-index", type=int, default=None)
     parser.add_argument("--max-points", type=int, default=120000)
     parser.add_argument("--seed", type=int, default=0)
     return parser.parse_args()
@@ -28,9 +29,19 @@ def main() -> None:
     args = parse_args()
     data = np.load(args.predictions, allow_pickle=True)
 
-    points = data["world_points"].reshape(-1, 3)
-    conf = data["world_points_conf"].reshape(-1)
-    colors = (np.clip(data["images"].transpose(0, 2, 3, 1), 0, 1) * 255).astype(np.uint8).reshape(-1, 3)
+    points = data["world_points"]
+    conf = data["world_points_conf"]
+    images = data["images"].transpose(0, 2, 3, 1)
+    if args.frame_index is not None:
+        if args.frame_index < 0 or args.frame_index >= points.shape[0]:
+            raise ValueError(f"--frame-index must be in [0, {points.shape[0] - 1}]")
+        points = points[args.frame_index : args.frame_index + 1]
+        conf = conf[args.frame_index : args.frame_index + 1]
+        images = images[args.frame_index : args.frame_index + 1]
+
+    points = points.reshape(-1, 3)
+    conf = conf.reshape(-1)
+    colors = (np.clip(images, 0, 1) * 255).astype(np.uint8).reshape(-1, 3)
 
     threshold = np.percentile(conf, args.conf_percent)
     mask = np.isfinite(points).all(axis=1) & (conf >= threshold) & (conf > 1e-5)
