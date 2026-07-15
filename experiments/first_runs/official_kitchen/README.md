@@ -23,4 +23,4 @@ conda run --no-capture-output -n vggt python scripts/run_vggt_folder.py \
 - 预览：`artifacts/previews/`
 - 3D：`artifacts/3d/scene_conf50_500k.glb`、`artifacts/3d/scene_conf50_500k.ply`
 
-备注：`predictions.npz` 约 196 MB，已被 Git 忽略。
+备注：`predictions.npz` 和 `artifacts/` 是重产物，已清理；需要时按上面的命令重跑生成。

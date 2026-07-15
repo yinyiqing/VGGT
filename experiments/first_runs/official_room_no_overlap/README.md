@@ -23,4 +23,6 @@ conda run --no-capture-output -n vggt python scripts/run_vggt_folder.py \
 - 预览：`artifacts/previews/`
 - 3D：`artifacts/3d/scene_conf50_500k.glb`、`artifacts/3d/scene_conf50_500k.ply`
 
+备注：`predictions.npz` 和 `artifacts/` 是重产物，已清理；需要时按上面的命令重跑生成。
+
 初步观察：输入视角覆盖房间不同局部，重叠不足；VGGT 仍会输出深度和相机，需要后续检查几何一致性。
