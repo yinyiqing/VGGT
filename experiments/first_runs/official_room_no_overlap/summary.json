@@ -1,0 +1,38 @@
+{
+  "timestamp_utc": "2026-07-15T05:02:03.360814+00:00",
+  "image_folder": "/home/jiutian/vggt/official-vggt/examples/room/images",
+  "image_count": 8,
+  "images": [
+    "no_overlap_1.png",
+    "no_overlap_2.jpg",
+    "no_overlap_3.jpg",
+    "no_overlap_4.jpg",
+    "no_overlap_5.jpg",
+    "no_overlap_6.jpg",
+    "no_overlap_7.jpg",
+    "no_overlap_8.jpg"
+  ],
+  "output_dir": "/home/jiutian/vggt/experiments/first_runs/official_room_no_overlap",
+  "prediction_file": "/home/jiutian/vggt/experiments/first_runs/official_room_no_overlap/predictions.npz",
+  "python": "3.10.20",
+  "torch": "2.3.1+cu121",
+  "cuda_device": "NVIDIA GeForce RTX 4090",
+  "cuda_capability": [
+    8,
+    9
+  ],
+  "dtype": "torch.bfloat16",
+  "elapsed_seconds": 10.564,
+  "peak_vram_gb": 8.43,
+  "prediction_keys": [
+    "depth",
+    "depth_conf",
+    "extrinsic",
+    "images",
+    "intrinsic",
+    "pose_enc",
+    "world_points",
+    "world_points_conf",
+    "world_points_from_depth"
+  ]
+}
