@@ -11,7 +11,9 @@ __pycache__/
 .mypy_cache/
 
 # Local datasets and downloaded model assets.
-/data/
+/data/*
+!/data/README.md
+!/data/.gitkeep
 /datasets/
 /checkpoints/
 /weights/

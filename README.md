@@ -10,6 +10,9 @@
 - `scripts/`：我们自己写的复现脚本、探针、评估脚本和辅助工具。
 - `notes/`：论文笔记、术语表、失败案例日志和实验观察。
 - `experiments/`：轻量实验记录、配置、命令和结果表。
+- `ideas/`：论文 idea、方向取舍和决策记录。
+- `paper/`：论文大纲和后续草稿。
+- `docs/`：项目主线和结构说明。
 - `patches/`：如果后续必须修改 `official-vggt/`，就在这里保存小补丁。
 
 ## 我们不会追踪什么
@@ -37,3 +40,16 @@ conda run --no-capture-output -n vggt python scripts/run_vggt_experiment.py \
 ```
 
 自采数据怎么拍，见 `notes/data_collection.md`。
+
+## 主线目录
+
+```text
+docs/mainline.md          # 当前研究主线
+data/                     # 本地图片，不上传
+experiments/first_runs/   # 官方样例复现
+experiments/custom/       # 自采数据实验
+experiments/diagnostics/  # 失败诊断实验
+experiments/gsplat_trials/# 3DGS 对照实验
+ideas/                    # 候选方向和决策
+paper/                    # 论文草稿
+```
