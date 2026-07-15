@@ -49,6 +49,25 @@ http://127.0.0.1:8080
 
 这样即使浏览器转发很慢或者暂时不可用，实验也不会卡住。
 
+## 查看 3D 结果
+
+VGGT 的原始输出是 `.npz`，不能直接用图片查看器打开。
+
+导出浏览器友好的 `.glb`：
+
+```bash
+conda run --no-capture-output -n vggt python scripts/export_vggt_glb.py \
+  --predictions experiments/first_runs/official_kitchen/predictions.npz \
+  --output experiments/first_runs/official_kitchen/artifacts/3d/scene_conf50.glb \
+  --conf-percent 50
+```
+
+Mac 上查看 `.glb`：
+
+- 直接拖到浏览器窗口。
+- 或用 Blender / MeshLab 打开。
+- VS Code Remote SSH 里可以右键下载到本地再看。
+
 ## 建议规则
 
 交互式 viewer 用来建立直觉；被追踪的笔记和轻量结果表才是研究记忆。只要在 viewer 里看到有意思的现象，就把它写进 `notes/failure_log.md`，并在 `experiments/` 下保存对应的小型结果记录或路径引用。
