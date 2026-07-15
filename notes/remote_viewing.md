@@ -58,8 +58,10 @@ VGGT 的原始输出是 `.npz`，不能直接用图片查看器打开。
 ```bash
 conda run --no-capture-output -n vggt python scripts/export_vggt_glb.py \
   --predictions experiments/first_runs/official_kitchen/predictions.npz \
-  --output experiments/first_runs/official_kitchen/artifacts/3d/scene_conf50.glb \
-  --conf-percent 50
+  --output experiments/first_runs/official_kitchen/artifacts/3d/scene_conf50_500k.glb \
+  --conf-percent 50 \
+  --max-points 500000 \
+  --also-ply
 ```
 
 Mac 上查看 `.glb`：
@@ -67,6 +69,8 @@ Mac 上查看 `.glb`：
 - 直接拖到浏览器窗口。
 - 或用 Blender / MeshLab 打开。
 - VS Code Remote SSH 里可以右键下载到本地再看。
+
+如果浏览器预览很淡或很碎，优先下载 `.ply` 用 MeshLab 看。
 
 ## 建议规则
 

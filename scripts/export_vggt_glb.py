@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Export a VGGT predictions.npz file to a browser-friendly point-cloud GLB."""
+"""Export VGGT predictions to lightweight point-cloud files."""
 
 from __future__ import annotations
 
@@ -16,6 +16,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--conf-percent", type=float, default=50.0)
     parser.add_argument("--mode", choices=["pointmap", "depth"], default="pointmap")
+    parser.add_argument("--max-points", type=int, default=500000)
+    parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--also-ply", action="store_true")
     return parser.parse_args()
 
 
@@ -39,12 +42,29 @@ def main() -> None:
     threshold = np.percentile(conf_flat, args.conf_percent)
     mask = np.isfinite(points_flat).all(axis=1) & (conf_flat >= threshold) & (conf_flat > 1e-5)
 
-    point_cloud = trimesh.PointCloud(vertices=points_flat[mask], colors=colors_flat[mask])
+    points_out = points_flat[mask]
+    colors_out = colors_flat[mask]
+    if len(points_out) > args.max_points:
+        rng = np.random.default_rng(args.seed)
+        keep = rng.choice(len(points_out), size=args.max_points, replace=False)
+        points_out = points_out[keep]
+        colors_out = colors_out[keep]
+
+    center = np.median(points_out, axis=0)
+    points_out = points_out - center
+
+    point_cloud = trimesh.PointCloud(vertices=points_out, colors=colors_out)
     scene = trimesh.Scene(point_cloud)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     scene.export(file_obj=args.output)
     print(f"Saved GLB: {args.output}")
+    print(f"Exported points: {len(points_out)}")
+
+    if args.also_ply:
+        ply_path = args.output.with_suffix(".ply")
+        point_cloud.export(file_obj=ply_path)
+        print(f"Saved PLY: {ply_path}")
 
 
 if __name__ == "__main__":
