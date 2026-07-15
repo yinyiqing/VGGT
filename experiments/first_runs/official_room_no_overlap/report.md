@@ -16,21 +16,21 @@
 
 ## 推荐查看顺序
 
-1. 输入图：`experiments/first_runs/official_room_no_overlap/artifacts/previews/images_grid.jpg`
-2. depth：`experiments/first_runs/official_room_no_overlap/artifacts/previews/depth_grid.png`
-3. confidence：`experiments/first_runs/official_room_no_overlap/artifacts/previews/world_points_conf_grid.png`
-4. 干净点云 PNG：`experiments/first_runs/official_room_no_overlap/artifacts/previews/pointcloud_clean_conf50.png`
-5. 细节点云 PNG：`experiments/first_runs/official_room_no_overlap/artifacts/previews/pointcloud_detail_conf10.png`
-6. 单帧点云 PNG：`experiments/first_runs/official_room_no_overlap/artifacts/previews/frame00_pointcloud_conf10.png`
+1. 输入图：`experiments/first_runs/official_room_no_overlap/artifacts/01_preview_images/images_grid.jpg`
+2. depth：`experiments/first_runs/official_room_no_overlap/artifacts/01_preview_images/depth_grid.png`
+3. confidence：`experiments/first_runs/official_room_no_overlap/artifacts/01_preview_images/world_points_conf_grid.png`
+4. 干净点云 PNG：`experiments/first_runs/official_room_no_overlap/artifacts/01_preview_images/pointcloud_clean_conf50.png`
+5. 细节点云 PNG：`experiments/first_runs/official_room_no_overlap/artifacts/01_preview_images/pointcloud_detail_conf10.png`
+6. 单帧点云 PNG：`experiments/first_runs/official_room_no_overlap/artifacts/01_preview_images/frame00_pointcloud_conf10.png`
 
 ## 3D 文件
 
-- `experiments/first_runs/official_room_no_overlap/artifacts/3d/scene_conf50_500k.glb`
-- `experiments/first_runs/official_room_no_overlap/artifacts/3d/scene_conf50_500k.ply`
-- `experiments/first_runs/official_room_no_overlap/artifacts/3d/scene_conf10_2m.glb`
-- `experiments/first_runs/official_room_no_overlap/artifacts/3d/scene_conf10_2m.ply`
-- `experiments/first_runs/official_room_no_overlap/artifacts/3d/frame00_conf10_500k.glb`
-- `experiments/first_runs/official_room_no_overlap/artifacts/3d/frame00_conf10_500k.ply`
+- `experiments/first_runs/official_room_no_overlap/artifacts/02_pointcloud_files/scene_conf50_500k.glb`
+- `experiments/first_runs/official_room_no_overlap/artifacts/02_pointcloud_files/scene_conf50_500k.ply`
+- `experiments/first_runs/official_room_no_overlap/artifacts/02_pointcloud_files/scene_conf10_2m.glb`
+- `experiments/first_runs/official_room_no_overlap/artifacts/02_pointcloud_files/scene_conf10_2m.ply`
+- `experiments/first_runs/official_room_no_overlap/artifacts/02_pointcloud_files/frame00_conf10_500k.glb`
+- `experiments/first_runs/official_room_no_overlap/artifacts/02_pointcloud_files/frame00_conf10_500k.ply`
 
 ## 人工观察
 

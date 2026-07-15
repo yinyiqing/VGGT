@@ -63,8 +63,8 @@ def main() -> None:
     output_dir = args.output_dir.resolve() if args.output_dir else predictions.parent.resolve()
     title = args.title or output_dir.name
 
-    previews_dir = output_dir / "artifacts" / "previews"
-    three_d_dir = output_dir / "artifacts" / "3d"
+    previews_dir = output_dir / "artifacts" / "01_preview_images"
+    three_d_dir = output_dir / "artifacts" / "02_pointcloud_files"
     report_path = output_dir / "report.md"
 
     data = np.load(predictions, allow_pickle=True)
@@ -73,7 +73,8 @@ def main() -> None:
         raise ValueError(f"--single-frame must be in [0, {image_count - 1}]")
 
     previews_dir.mkdir(parents=True, exist_ok=True)
-    three_d_dir.mkdir(parents=True, exist_ok=True)
+    if not args.skip_3d:
+        three_d_dir.mkdir(parents=True, exist_ok=True)
 
     run(
         [

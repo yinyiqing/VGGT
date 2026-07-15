@@ -29,7 +29,7 @@ conda run --no-capture-output -n vggt python scripts/run_vggt_experiment.py \
 ## 看结果顺序
 
 1. 先看 `report.md`。
-2. 再看 `artifacts/previews/images_grid.jpg`。
+2. 再看 `artifacts/01_preview_images/images_grid.jpg`。
 3. 对比 `pointcloud_clean_conf50.png` 和 `pointcloud_detail_conf10.png`。
 4. 如果细小物体消失，再看 `frame00_pointcloud_conf10.png` 和对应 `.ply`。
 

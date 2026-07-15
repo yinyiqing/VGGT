@@ -58,7 +58,7 @@ VGGT 的原始输出是 `.npz`，不能直接用图片查看器打开。
 ```bash
 conda run --no-capture-output -n vggt python scripts/export_vggt_glb.py \
   --predictions experiments/first_runs/official_kitchen/predictions.npz \
-  --output experiments/first_runs/official_kitchen/artifacts/3d/scene_conf50_500k.glb \
+  --output experiments/first_runs/official_kitchen/artifacts/02_pointcloud_files/scene_conf50_500k.glb \
   --conf-percent 50 \
   --max-points 500000 \
   --also-ply

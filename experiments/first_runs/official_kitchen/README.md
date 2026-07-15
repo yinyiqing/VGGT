@@ -21,11 +21,11 @@ conda run --no-capture-output -n vggt python scripts/run_vggt_folder.py \
 - 峰值显存：8.79 GB
 - 输出：`summary.json`、`predictions.npz`
 - 报告：`report.md`
-- 预览：`artifacts/previews/`
-- 3D：`artifacts/3d/scene_conf50_500k.glb`、`artifacts/3d/scene_conf50_500k.ply`
+- 预览：`artifacts/01_preview_images/`
+- 3D：`artifacts/02_pointcloud_files/scene_conf50_500k.glb`、`artifacts/02_pointcloud_files/scene_conf50_500k.ply`
 
 当前保留的查看文件：
 
-- `artifacts/3d/scene_conf50_500k.ply`：干净整体。
-- `artifacts/3d/scene_conf10_2m.ply`：更多细节，也更乱。
-- `artifacts/3d/frame00_conf10_500k.ply`：单帧检查小车。
+- `artifacts/02_pointcloud_files/scene_conf50_500k.ply`：干净整体。
+- `artifacts/02_pointcloud_files/scene_conf10_2m.ply`：更多细节，也更乱。
+- `artifacts/02_pointcloud_files/frame00_conf10_500k.ply`：单帧检查小车。

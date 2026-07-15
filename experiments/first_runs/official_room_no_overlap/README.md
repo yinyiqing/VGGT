@@ -21,7 +21,7 @@ conda run --no-capture-output -n vggt python scripts/run_vggt_folder.py \
 - 峰值显存：8.43 GB
 - 输出：`summary.json`、`predictions.npz`
 - 报告：`report.md`
-- 预览：`artifacts/previews/`
-- 3D：`artifacts/3d/scene_conf50_500k.glb`、`artifacts/3d/scene_conf50_500k.ply`
+- 预览：`artifacts/01_preview_images/`
+- 3D：`artifacts/02_pointcloud_files/scene_conf50_500k.glb`、`artifacts/02_pointcloud_files/scene_conf50_500k.ply`
 
 初步观察：输入视角覆盖房间不同局部，重叠不足；VGGT 仍会输出深度和相机，需要后续检查几何一致性。
